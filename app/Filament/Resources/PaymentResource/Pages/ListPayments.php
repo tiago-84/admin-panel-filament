@@ -5,6 +5,7 @@ namespace App\Filament\Resources\PaymentResource\Pages;
 use App\Filament\Resources\PaymentResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Contracts\View\View;
 
 class ListPayments extends ListRecords
 {
@@ -16,4 +17,10 @@ class ListPayments extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getTableContentFooter(): ?View
+    {
+        return view('filament/payments/footer');
+    }
+    
 }
