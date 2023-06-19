@@ -3,17 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Filament\Resources\ProductResource\RelationManagers\TagsRelationManager;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
 class ProductResource extends Resource
@@ -40,7 +39,9 @@ class ProductResource extends Resource
                 }),
                 Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\TextInput::make('price')->required()->rule('numeric'),
-                FileUpload::make('image')
+                FileUpload::make('image'),
+                Select::make('tags')->multiple()->relationship('tags', 'name')
+                
             ]);
     }
 
@@ -67,7 +68,8 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+           //
+            
         ];
     }
 
