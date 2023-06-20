@@ -40,9 +40,9 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\TextInput::make('price')->required()->rule('numeric'),
                 FileUpload::make('image'),
-                Select::make('tags')->multiple()->relationship('tags', 'name')
+                //Select::make('tags')->multiple()->relationship('tags', 'name')
                 
-            ]);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -55,9 +55,9 @@ class ProductResource extends Resource
             ])
             ->defaultSort('price', 'desc')
             ->filters([
-                //
             ])
             ->actions([
+                //
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
